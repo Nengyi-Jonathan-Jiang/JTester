@@ -15,12 +15,18 @@
 }
 
 .questions pre {
+    display: inline-block;
+    margin: 0;
+}
+
+.questions :is(pre, pre *) {
     font-family: "JetBrains Mono", monospace;
     font-size:   10pt;
     white-space: pre-wrap;
 }
 
-.questions > .question > .question-content > :is(pre, pre *) {
+.questions pre.code-block {
+    display: block;
     border: 1px solid black;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -28,7 +34,7 @@
     position: relative;
 }
 
-.questions > .question > .question-content > pre::before {
+.questions pre.code-block::before {
     position: absolute;
     top: 5px;
     left: 5px;
@@ -76,20 +82,15 @@
     outline:       none;
     /*padding: 5px;*/
     color:         white;
-}
 
-.questions > .question > .bottom > button:hover {
-    filter: brightness(95%);
-}
-
-.questions > .question > .bottom > .reset-button {
-    background-color: #f04;
-}
-
-.questions > .question > .bottom > .check-button {
     background-color: #4bf;
+    transition: transform .25s;
 }
 
-.questions pre {
-    margin: 0;
+.questions > .question > .bottom > button.check-button:hover {
+    transform: scale(1.07);
+}
+
+.check-button:has(input:checked) {
+
 }

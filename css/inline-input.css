@@ -1,0 +1,12 @@
+.questions span.inline-input {
+    display: inline-block;
+    outline: none;
+    color: #44bbff;
+}
+
+.questions span.inline-input:empty {
+    width: .8em;
+    outline: 1px solid #44bbff;
+    outline-offset: -1px;
+    caret-color: transparent;
+}
