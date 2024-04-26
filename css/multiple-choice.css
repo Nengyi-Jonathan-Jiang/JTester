@@ -1,11 +1,8 @@
-.questions .answer-choices {
-
-}
-
-.questions .answer-choices > label {
+.questions :is(.answer-select, .answer-choices) > label {
     display: block;
 }
 
-.questions .answer-choices > label > input {
-    vertical-align: -.19em;
+.questions :is(.answer-select, .answer-choices) > label > input {
+    vertical-align: -.12em;
+    margin-right: .5em;
 }

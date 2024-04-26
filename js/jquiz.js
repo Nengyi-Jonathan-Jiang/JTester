@@ -12,16 +12,21 @@ const parser = new LRParser(ParsingTable.fromString(
     await fetchTextContents('../quiz-parser/syntax/jquiz.ptbl')
 ));
 
+const counter = new class Counter {
+    #i = 0;
+    getNext() {
+        return this.#i++;
+    }
+}
+
 /**
  * @type {Object.<string,{
  *     type?: string,
- *     create: function(HTMLElement, ...HTMLElement):void
+ *     create?: function(HTMLElement, ...HTMLElement):void
  * }>}
  */
 const objs = {
-    'quiz': {
-        create: () => {}
-    },
+    'quiz': {},
     'questions': {
         create: (el) => {
             el.className = 'questions';
@@ -31,6 +36,17 @@ const objs = {
         type: 'div',
         create: (el) => {
             el.className = 'question';
+
+            const b = document.createElement('span');
+            b.className = 'bottom';
+
+            const bl = document.createElement('label');
+            const bb = document.createElement('input');
+            bb.className = 'check-button';
+            bb.type = 'checkbox';
+            bl.appendChild(bb);
+            b.appendChild(bl);
+            el.appendChild(b);
         }
     },
     'block': {
@@ -41,14 +57,69 @@ const objs = {
     },
     'inline-frq': {
         type: 'span',
-        create: (el, ...children) => {
-            el.setAttribute('contenteditable', '');
-            el.className = 'inline-input';
-            el.onkeydown = (evt) => {
+        create: (el) => {
+            el.className = 'inline-frq';
+            const i = document.createElement('span');
+
+            i.setAttribute('contenteditable', '');
+            i.className = 'inline-input';
+            i.onkeydown = (evt) => {
                 if(evt.key === 'Enter') evt.preventDefault();
             }
+
+            el.appendChild(i);
+
+            const c = document.createElement('span');
+            c.className = 'correct'
+            c.append(el.firstChild);
+
+            el.appendChild(c);
         }
     },
+    'mcq': {
+        type: 'div',
+        create: (el, ...children) => {
+            const n = `j-radio-${counter.getNext()}`;
+            el.className = 'answer-choices';
+            children.map(child => child.firstChild).forEach(i => {
+                i.setAttribute('name', n);
+                i.setAttribute('type', 'radio');
+            })
+        }
+    },
+    'choice': {
+        type: 'label',
+        create: (el) => {
+            el.className = 'answer-choice';
+
+            const i = document.createElement('input');
+
+            el.prepend(i)
+        }
+    },
+    'correct-choice': {
+        type: 'label',
+        create: (el) => {
+            el.className = 'answer-choice correct';
+
+            const i = document.createElement('input');
+            i.setAttribute('type', 'radio');
+
+            el.insertBefore(i, el.firstChild)
+        }
+    },
+    'code': {
+        type: 'pre'
+    },
+    'msq': {
+        type: 'div',
+        create: (el, ...children) => {
+            el.className = 'answer-select';
+            children.map(child => child.firstChild).forEach(i => {
+                i.setAttribute('type', 'checkbox');
+            })
+        }
+    }
 };
 
 function parseString(str) {
@@ -87,12 +158,12 @@ function generateQuizFromAST(el, ast) {
             if(obj.type) {
                 const newEl = document.createElement(obj.type);
                 ast.children[2].children.forEach(generateQuizFromAST.bind(null, newEl));
-                obj.create(newEl, ...newEl.children);
                 el.append(newEl);
+                obj.create?.(newEl, ...newEl.children);
             }
             else {
                 ast.children[2].children.forEach(generateQuizFromAST.bind(null, el));
-                obj.create(el);
+                obj.create?.(el);
             }
         } break;
 

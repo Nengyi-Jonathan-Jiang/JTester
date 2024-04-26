@@ -1,12 +1,12 @@
 .questions span.inline-input {
     display: inline-block;
     outline: none;
-    color: #44bbff;
+    color: #ffbb44;
 }
 
 .questions span.inline-input:empty {
     width: .6em;
-    outline: 1px solid #44bbff;
+    outline: 1px solid #ffbb44;
     outline-offset: -1px;
     caret-color: transparent;
 }
@@ -17,9 +17,13 @@
 
 @keyframes inline-input-blink {
     0% {
-        background: #4bf;
+        background: #ffbb44;
     }
     50% {
         background: transparent;
     }
+}
+
+.questions span.inline-frq>span.correct {
+    display: none;
 }
