@@ -1,0 +1,11 @@
+.questions .answer-choices {
+
+}
+
+.questions .answer-choices > label {
+    display: block;
+}
+
+.questions .answer-choices > label > input:first-child + pre:last-child {
+    display: inline-block;
+}

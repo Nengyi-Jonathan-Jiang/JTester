@@ -1,0 +1,95 @@
+@font-face {
+    font-family: "Nunito";
+    src:         url("../font/Nunito.ttf");
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src:         url("../font/JetBrainsMono.ttf");
+}
+
+.questions * {
+    box-sizing:  border-box;
+    font-family: Nunito, sans-serif;
+    font-size:   11pt;
+}
+
+.questions pre {
+    font-family: "JetBrains Mono", monospace;
+    font-size:   10pt;
+    white-space: pre-wrap;
+}
+
+.questions > .question > .question-content > :is(pre, pre *) {
+    border: 1px solid black;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 32px;
+    position: relative;
+}
+
+.questions > .question > .question-content > pre::before {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    /* Dirty Hack :) */
+    content: " 1\a  2\a  3\a  4\a  5\a  6\a  7\a  8\a  9\a 10\a 11\a 12\a 13\a 14\a 15\a 16\a 17\a 18\a 19\a 20\a"
+             "21\a 22\a 23\a 24\a 25\a 26\a 27\a 28\a 29\a 30\a 31\a 32\a 33\a 34\a 35\a 36\a 37\a 38\a 39\a 40\a"
+             "41\a 42\a 43\a 44\a 45\a 46\a 47\a 48\a 49\a 50\a 51\a 52\a 53\a 54\a 55\a 56\a 57\a 58\a 59\a 60\a"
+             "61\a 62\a 63\a 64\a 65\a 66\a 67\a 68\a 69\a 70\a 71\a 72\a 73\a 74\a 75\a 76\a 77\a 78\a 79\a 80\a"
+             "81\a 82\a 83\a 84\a 85\a 86\a 87\a 88\a 89\a 90\a 91\a 92\a 93\a 94\a 95\a 96\a 97\a 98\a 99";
+    height: calc(100% - 10px);
+    overflow-y: hidden;
+    padding-right: 5px;
+    border-right: 1px solid #ccc;
+    color: #ccc;
+}
+
+.questions {
+    background-color: #4bf;
+    padding:          10px;
+}
+
+.questions > .question:not(:first-child) {
+    margin-top: 10px;
+}
+
+.questions > .question {
+    background-color: white;
+    border-radius:    10px;
+    padding:          10px;
+}
+
+.questions > .question > .bottom::before {
+    content:          "";
+    display:          block;
+    width:            100%;
+    height:           1px;
+    background-color: #ddd;
+    margin-bottom:    10px;
+    margin-top:       10px;
+}
+
+.questions > .question > .bottom > button {
+    border-radius: 10px;
+    border:        0;
+    outline:       none;
+    /*padding: 5px;*/
+    color:         white;
+}
+
+.questions > .question > .bottom > button:hover {
+    filter: brightness(95%);
+}
+
+.questions > .question > .bottom > .reset-button {
+    background-color: #f04;
+}
+
+.questions > .question > .bottom > .check-button {
+    background-color: #4bf;
+}
+
+.questions pre {
+    margin: 0;
+}
