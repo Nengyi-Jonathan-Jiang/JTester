@@ -6,6 +6,6 @@
     display: block;
 }
 
-.questions .answer-choices > label > input:first-child + pre:last-child {
-    display: inline-block;
+.questions .answer-choices > label > input {
+    vertical-align: -.19em;
 }

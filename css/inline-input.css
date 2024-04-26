@@ -5,8 +5,21 @@
 }
 
 .questions span.inline-input:empty {
-    width: .8em;
+    width: .6em;
     outline: 1px solid #44bbff;
     outline-offset: -1px;
     caret-color: transparent;
+}
+
+.questions span.inline-input:empty:focus {
+    animation: inline-input-blink .6s infinite steps(1);
+}
+
+@keyframes inline-input-blink {
+    0% {
+        background: #4bf;
+    }
+    50% {
+        background: transparent;
+    }
 }
