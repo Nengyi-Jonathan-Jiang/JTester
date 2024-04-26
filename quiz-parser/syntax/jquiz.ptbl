@@ -1,0 +1,227 @@
+39
+state 7
+program goto 1
+item goto 2
+object goto 3
+string shift 4
+array goto 5
+type shift 7
+[ shift 6
+state 1
+END accept
+state 2
+EPSILON reduce program := item
+END reduce program := item
+state 2
+EPSILON reduce item := object
+END reduce item := object
+state 2
+EPSILON reduce item := string
+END reduce item := string
+state 2
+EPSILON reduce item := array
+END reduce item := array
+state 5
+items goto 8
+] reduce items := 
+string reduce items := 
+type reduce items := 
+[ reduce items := 
+state 1
+( shift 9
+state 7
+] shift 15
+item goto 10
+object goto 11
+string shift 12
+array goto 13
+type shift 16
+[ shift 14
+state 6
+object-params goto 17
+) reduce object-params := 
+string reduce object-params := 
+name reduce object-params := 
+type reduce object-params := 
+[ reduce object-params := 
+state 4
+] reduce __CHAIN__ items := items item
+string reduce __CHAIN__ items := items item
+type reduce __CHAIN__ items := items item
+[ reduce __CHAIN__ items := items item
+state 5
+EPSILON reduce item := object
+] reduce item := object
+string reduce item := object
+type reduce item := object
+[ reduce item := object
+state 5
+EPSILON reduce item := string
+] reduce item := string
+string reduce item := string
+type reduce item := string
+[ reduce item := string
+state 5
+EPSILON reduce item := array
+] reduce item := array
+string reduce item := array
+type reduce item := array
+[ reduce item := array
+state 5
+items goto 18
+] reduce items := 
+string reduce items := 
+type reduce items := 
+[ reduce items := 
+state 2
+EPSILON reduce array := [ items ]
+END reduce array := [ items ]
+state 1
+( shift 19
+state 9
+) shift 26
+object-param goto 27
+item goto 20
+name shift 28
+object goto 21
+string shift 22
+array goto 23
+type shift 25
+[ shift 24
+state 7
+] shift 29
+item goto 10
+object goto 11
+string shift 12
+array goto 13
+type shift 16
+[ shift 14
+state 6
+object-params goto 30
+) reduce object-params := 
+string reduce object-params := 
+name reduce object-params := 
+type reduce object-params := 
+[ reduce object-params := 
+state 6
+EPSILON reduce object-param := item
+) reduce object-param := item
+string reduce object-param := item
+name reduce object-param := item
+type reduce object-param := item
+[ reduce object-param := item
+state 6
+EPSILON reduce item := object
+) reduce item := object
+string reduce item := object
+name reduce item := object
+type reduce item := object
+[ reduce item := object
+state 6
+EPSILON reduce item := string
+) reduce item := string
+string reduce item := string
+name reduce item := string
+type reduce item := string
+[ reduce item := string
+state 6
+EPSILON reduce item := array
+) reduce item := array
+string reduce item := array
+name reduce item := array
+type reduce item := array
+[ reduce item := array
+state 5
+items goto 31
+] reduce items := 
+string reduce items := 
+type reduce items := 
+[ reduce items := 
+state 1
+( shift 32
+state 2
+EPSILON reduce object := type ( object-params )
+END reduce object := type ( object-params )
+state 5
+) reduce __CHAIN__ object-params := object-params object-param
+string reduce __CHAIN__ object-params := object-params object-param
+name reduce __CHAIN__ object-params := object-params object-param
+type reduce __CHAIN__ object-params := object-params object-param
+[ reduce __CHAIN__ object-params := object-params object-param
+state 1
+= shift 33
+state 5
+EPSILON reduce array := [ items ]
+] reduce array := [ items ]
+string reduce array := [ items ]
+type reduce array := [ items ]
+[ reduce array := [ items ]
+state 9
+) shift 34
+object-param goto 27
+item goto 20
+name shift 28
+object goto 21
+string shift 22
+array goto 23
+type shift 25
+[ shift 24
+state 7
+] shift 35
+item goto 10
+object goto 11
+string shift 12
+array goto 13
+type shift 16
+[ shift 14
+state 6
+object-params goto 36
+) reduce object-params := 
+string reduce object-params := 
+name reduce object-params := 
+type reduce object-params := 
+[ reduce object-params := 
+state 6
+item goto 37
+object goto 21
+string shift 22
+array goto 23
+type shift 25
+[ shift 24
+state 5
+EPSILON reduce object := type ( object-params )
+] reduce object := type ( object-params )
+string reduce object := type ( object-params )
+type reduce object := type ( object-params )
+[ reduce object := type ( object-params )
+state 6
+EPSILON reduce array := [ items ]
+) reduce array := [ items ]
+string reduce array := [ items ]
+name reduce array := [ items ]
+type reduce array := [ items ]
+[ reduce array := [ items ]
+state 9
+) shift 38
+object-param goto 27
+item goto 20
+name shift 28
+object goto 21
+string shift 22
+array goto 23
+type shift 25
+[ shift 24
+state 6
+EPSILON reduce object-param := name = item
+) reduce object-param := name = item
+string reduce object-param := name = item
+name reduce object-param := name = item
+type reduce object-param := name = item
+[ reduce object-param := name = item
+state 6
+EPSILON reduce object := type ( object-params )
+) reduce object := type ( object-params )
+string reduce object := type ( object-params )
+name reduce object := type ( object-params )
+type reduce object := type ( object-params )
+[ reduce object := type ( object-params )

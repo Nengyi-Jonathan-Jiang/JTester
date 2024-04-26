@@ -1,0 +1,63 @@
+quiz (
+    questions(
+        question (
+            "Fill in the blanks to declare an integer variable `teamNumber` and initialize it to `4639`"
+            block (
+                inline-frq("int")
+                " teamNumber "
+                inline-frq("=")
+                " 4639 "
+                inline-frq(";")
+            )
+        )
+
+        question (
+            "Which of the following are comments in Java?"
+            msq (
+                choice(code("// Comment") explanation("This is a single line comment in Java"))
+                choice(code("/* Comment */") explanation ("This is a multi-line comment in Java"))
+                choice(code("/** Comment **/") explanation(
+                    "This also works as a multi line comment in Java. "
+                    "The extra `*` in the comment don't affect anything."
+                ))
+                choice(code("# Comment") explanation("This is a comment in Python or R etc, not Java"))
+                choice(code("% Comment") explanation("This is a comment in Matlab or LaTeX etc, not Java"))
+                choice(code("<!-- Comment -->") explanation("This is a comment in HTML, not Java"))
+            )
+        )
+
+        question (
+            "What do you think the following function does?"
+            block(
+                "public boolean mysteryFunction(){
+                "    double elapsedTime = getCurrentTime() - this.startTime;
+                "    return elapsedTime >= this.cooldownDuration;
+                "}
+            )
+            mcq (
+                choice ("Gets the elapsed time since `startTime`")
+                correct-choice ("Checks if a cooldown is finished")
+                choice ("I have no idea!")
+                choice ("Checks if the current time is not less than the cooldown duration")
+            )
+        )
+
+        question (
+            "Consider the following class:
+            block(
+                "public class Motor
+                "    public Motor(int motorID){
+                "        // ...
+                "    }
+                "    public void setSpeed(double speed){
+                "        // ...
+                "    }
+                "}
+            )
+            "Write a class that encapsulates two `Motor`s. The class should have a single "
+            "constructor taking the IDs of the two motors and a single method to simultaneously "
+            "set the speeds of both motors."
+            frq()
+        )
+    )
+)

@@ -64,6 +64,7 @@
     background-color: white;
     border-radius:    10px;
     padding:          10px;
+    box-shadow: 0 0 5px #0002;
 }
 
 .questions > .question > .bottom::before {
@@ -76,21 +77,41 @@
     margin-top:       10px;
 }
 
-.questions > .question > .bottom > button {
+.questions > .question > .bottom > label > input {
+    display: none;
+    appearance: none;
+}
+
+.questions > .question > .bottom > label {
     border-radius: 10px;
     border:        0;
     outline:       none;
-    /*padding: 5px;*/
+    display: inline-block;
+    width: 8em;
+    text-align: center;
     color:         white;
 
     background-color: #4bf;
-    transition: transform .25s;
+    transition: transform .2s;
+
+    user-select: none;
 }
 
-.questions > .question > .bottom > button.check-button:hover {
+.questions > .question > .bottom > label::before {
+    content: "Reveal Answer"
+}
+
+.questions > .question > .bottom > label:hover {
     transform: scale(1.07);
 }
 
-.check-button:has(input:checked) {
+.questions > .question > .bottom > label:has(>input:checked) {
+    background-color: white;
+    outline: 1px solid #4bf;
+    outline-offset: -1px;
+    color: #4bf;
+}
 
+.questions > .question > .bottom > label:has(>input:checked)::before {
+    content: "Hide Answer";
 }
