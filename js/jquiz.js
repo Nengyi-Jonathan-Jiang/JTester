@@ -76,6 +76,28 @@ const objs = {
             el.appendChild(c);
         }
     },
+    'frq': {
+        type: 'pre',
+        create: (el) => {
+            el.className = 'code-block';
+            el.setAttribute('contenteditable', '')
+            el.onkeyup = evt => {
+                if(evt.key === 'Enter') {
+                    evt.preventDefault();
+                    evt.stopImmediatePropagation();
+                }
+            }
+            el.onkeydown = (evt) => {
+                if(evt.key === 'Enter') {
+                    const position = el.selectionEnd;
+                    this.value = el.value.substring(0, position) + '\n' + this.value.substring(position);
+                    el.selectionEnd = position;
+                    evt.preventDefault();
+                    evt.stopImmediatePropagation();
+                }
+            }
+        }
+    },
     'mcq': {
         type: 'div',
         create: (el, ...children) => {
