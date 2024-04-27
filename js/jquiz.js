@@ -81,8 +81,18 @@ const objs = {
         }
     },
     'frq': {
-        type: 'pre',
-        create: (el) => {
+        type: 'div',
+        create: (e, ...children) => {
+            e.className = 'frq-container';
+
+            const el = document.createElement('pre');
+            e.appendChild(el);
+
+            const correct = document.createElement('pre');
+            correct.className = 'code-block correct';
+            correct.append(...children);
+            e.appendChild(correct);
+
             el.className = 'code-block frq';
             el.setAttribute('contenteditable', '');
             el.setAttribute('spellcheck', 'false');
@@ -209,7 +219,7 @@ function generateQuizFromAST(el, ast) {
                 const newEl = document.createElement(obj.type);
                 ast.children[2].children.forEach(generateQuizFromAST.bind(null, newEl));
                 el.append(newEl);
-                obj.create?.(newEl, ...newEl.children);
+                obj.create?.(newEl, ...newEl.childNodes);
             }
             else {
                 ast.children[2].children.forEach(generateQuizFromAST.bind(null, el));
@@ -227,7 +237,6 @@ function generateQuizFromAST(el, ast) {
 export async function generateQuiz(el, url) {
     const string = await fetchTextContents(url);
     const tokens = lexer.lex(string);
-    console.log(tokens.join('\n'))
     const ast = parser.parseTokens(tokens);
 
     generateQuizFromAST(el, ast);

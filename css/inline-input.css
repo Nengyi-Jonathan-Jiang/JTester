@@ -1,8 +1,11 @@
-.questions span.inline-input {
-    display: inline-block;
+.questions span.inline-frq {
     border: 1px solid #fb4;
     padding: 0 3px;
     position: relative;
+}
+
+.questions span.inline-input {
+    display: inline-block;
 }
 .questions span.inline-input:not(:empty)::before,
 .questions span.inline-input:not(:empty)::after {
@@ -23,7 +26,7 @@
     caret-color: transparent;
 }
 
-.questions span.inline-input:empty:focus {
+.questions span.inline-frq:has(span.inline-input:empty:focus) {
     animation: inline-input-blink .6s infinite steps(1);
 }
 
@@ -41,10 +44,63 @@
 }
 
 .questions .code-block.frq {
-    /*border-color: #fb4;*/
+    border-color: #fb4;
 }
 
 .questions pre.code-block.frq::before {
-    /*color: #fb4;*/
-    /*border-color: #fb4;*/
+    color: #fda;
+    border-color: #fda;
+}
+
+.questions .question:has(.check-button:checked) span.inline-frq>span.inline-input {
+    display: none;
+}
+
+.questions .question:has(.check-button:checked) span.inline-frq {
+    border-color: #4488ff;
+}
+
+.questions .question:has(.check-button:checked) span.inline-frq>span.correct {
+    display: inline-block;
+    color: #48f;
+}
+
+
+.frq-container {
+    display: flex;
+}
+.frq-container>pre.code-block.frq {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.frq-container>pre.code-block.correct {
+    flex-basis: 0;
+    width: 0;
+}
+
+.questions pre.code-block.correct {
+    display: none;
+}
+
+.questions .question:has(.check-button:checked) pre.code-block.correct {
+    display: block;
+    border-color: #48f;
+    color: #48f;
+    margin-left: 10px;
+    animation: frq-answer-slide-in 1s both;
+}
+
+@keyframes frq-answer-slide-in {
+    0% {
+        flex-grow: 0;
+    }
+    100% {
+        flex-grow: 1;
+    }
+
+}
+
+.questions .question:has(.check-button:checked) pre.code-block.correct::before {
+    color: #bdf;
+    border-color: #acf;
 }
