@@ -1,13 +1,25 @@
 .questions span.inline-input {
     display: inline-block;
-    outline: none;
-    color: #ffbb44;
+    border: 1px solid #fb4;
+    padding: 0 3px;
+    position: relative;
 }
+.questions span.inline-input:not(:empty)::before,
+.questions span.inline-input:not(:empty)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    height: 2px;
+    left: 0;
+    right: 0;
+}
+.questions span.inline-input:not(:empty)::before { top: 0 }
+.questions span.inline-input:not(:empty)::after { bottom: 0 }
 
 .questions span.inline-input:empty {
     width: .6em;
-    outline: 1px solid #ffbb44;
-    outline-offset: -1px;
     caret-color: transparent;
 }
 
@@ -17,7 +29,7 @@
 
 @keyframes inline-input-blink {
     0% {
-        background: #ffbb44;
+        background: #fb4;
     }
     50% {
         background: transparent;
@@ -26,4 +38,13 @@
 
 .questions span.inline-frq>span.correct {
     display: none;
+}
+
+.questions .code-block.frq {
+    /*border-color: #fb4;*/
+}
+
+.questions pre.code-block.frq::before {
+    /*color: #fb4;*/
+    /*border-color: #fb4;*/
 }

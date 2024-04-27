@@ -6,7 +6,7 @@ import {Token} from "../quiz-parser/language/common/Token.mjs";
 
 const lexer = createLexerFromFile(
     await fetchTextContents('../quiz-parser/syntax/jquiz.lex'),
-    'whitespace'
+    'whitespace', 'comment'
 );
 const parser = new LRParser(ParsingTable.fromString(
     await fetchTextContents('../quiz-parser/syntax/jquiz.ptbl')
@@ -49,6 +49,9 @@ const objs = {
             el.appendChild(b);
         }
     },
+    'section': {
+        type: 'div'
+    },
     'block': {
         type: 'pre',
         create: (el) => {
@@ -62,6 +65,7 @@ const objs = {
             const i = document.createElement('span');
 
             i.setAttribute('contenteditable', '');
+            i.setAttribute('spellcheck', 'false')
             i.className = 'inline-input';
             i.onkeydown = (evt) => {
                 if(evt.key === 'Enter') evt.preventDefault();
@@ -79,21 +83,50 @@ const objs = {
     'frq': {
         type: 'pre',
         create: (el) => {
-            el.className = 'code-block';
-            el.setAttribute('contenteditable', '')
+            el.className = 'code-block frq';
+            el.setAttribute('contenteditable', '');
+            el.setAttribute('spellcheck', 'false');
             el.onkeyup = evt => {
                 if(evt.key === 'Enter') {
                     evt.preventDefault();
                     evt.stopImmediatePropagation();
                 }
             }
+
+            if(!el.lastChild) {
+                el.appendChild(new Text('\n'));
+            }
+            if(!el.lastChild.textContent.endsWith('\n')) {
+                el.lastChild.textContent += '\n';
+            }
+
             el.onkeydown = (evt) => {
                 if(evt.key === 'Enter') {
-                    const position = el.selectionEnd;
-                    this.value = el.value.substring(0, position) + '\n' + this.value.substring(position);
-                    el.selectionEnd = position;
+                    const range = window.getSelection().getRangeAt(0);
+                    range.deleteContents();
+
+                    if(!range.startContainer) {
+                        console.log('no more start container');
+                    }
+
+                    const p = range.startOffset;
+                    const t = range.startContainer.textContent;
+                    range.startContainer.textContent = t.substring(0, p) + '\n' + t.substring(p);
+                    range.setStart(range.startContainer, p + 1);
+                    range.collapse(true);
+
                     evt.preventDefault();
                     evt.stopImmediatePropagation();
+                }
+                if(!el.lastChild) {
+                    el.appendChild(new Text('\n'));
+                    window.getSelection().getRangeAt(0).setStart(el.lastChild, el.lastChild.textContent.length);
+                    window.getSelection().getRangeAt(0).collapse();
+                }
+                if(!el.lastChild.textContent.endsWith('\n')) {
+                    el.lastChild.textContent += '\n';
+                    window.getSelection().getRangeAt(0).setStart(el.lastChild, el.lastChild.textContent.length);
+                    window.getSelection().getRangeAt(0).collapse();
                 }
             }
         }
@@ -161,9 +194,6 @@ function generateQuizFromAST(el, ast) {
                 else s += '\n';
                 el.append(...parseString(s));
             } break;
-
-            default:
-                console.log(ast.type.name);
         }
         return;
     }
@@ -175,8 +205,6 @@ function generateQuizFromAST(el, ast) {
                 console.log(`Unknown object of type ${objType}`)
                 break;
             }
-            console.log(objType, obj, ast.children[2].children);
-
             if(obj.type) {
                 const newEl = document.createElement(obj.type);
                 ast.children[2].children.forEach(generateQuizFromAST.bind(null, newEl));
@@ -188,9 +216,6 @@ function generateQuizFromAST(el, ast) {
                 obj.create?.(el);
             }
         } break;
-
-        default:
-            console.log(ast.type.name);
     }
 }
 
@@ -202,6 +227,7 @@ function generateQuizFromAST(el, ast) {
 export async function generateQuiz(el, url) {
     const string = await fetchTextContents(url);
     const tokens = lexer.lex(string);
+    console.log(tokens.join('\n'))
     const ast = parser.parseTokens(tokens);
 
     generateQuizFromAST(el, ast);

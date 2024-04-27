@@ -1,5 +1,10 @@
 quiz (
     questions(
+        section (
+            "This is a test to make sure you have all the Java knowledge necessary to do well in programming "
+            "training. You may search things up if you absolutely need to, but try to do it without to much "
+            "reliance on the internet. "
+        )
         question (
             "Fill in the blanks to declare an integer variable `teamNumber` and initialize it to `4639`"
             block (
@@ -10,7 +15,6 @@ quiz (
                 inline-frq(";")
             )
         )
-
         question (
             "Which of the following are comments in Java?"
             msq (
@@ -41,7 +45,6 @@ quiz (
                 choice ("Checks if the current time is not less than the cooldown duration")
             )
         )
-
         question (
             "Consider the following class:
             block(
@@ -54,10 +57,24 @@ quiz (
                 "    }
                 "}
             )
-            "Write a class that encapsulates two `Motor`s. The class should have a single "
+            "Write a class DoubleMotor that encapsulates two `Motor`s. The class should have a single "
             "constructor taking the IDs of the two motors and a single method to simultaneously "
             "set the speeds of both motors."
-            frq()
+            frq(
+                "public class DoubleMotor {
+                "    private final Motor motor1, motor2;
+                "
+                "    public DoubleMotor(int motorId1, motorId2){
+                "        motor1 = new Motor(motorId1);
+                "        motor2 = new Motor(motorId2);
+                "    }
+                "
+                "    public void setMotorSpeeds(double speed){
+                "        motor1.setSpeed(speed);
+                "        motor2.setSpeed(speed);
+                "    }
+                "}
+            )
         )
     )
 )
