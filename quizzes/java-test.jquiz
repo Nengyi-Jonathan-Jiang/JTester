@@ -1,6 +1,7 @@
 quiz (
     questions(
         section (
+            title("Java Test")
             "This is a test to make sure you have all the Java knowledge necessary to do well in programming "
             "training. You may search things up if you absolutely need to, but try to do it without to much "
             "reliance on the internet. "
@@ -18,15 +19,15 @@ quiz (
         question (
             "Which of the following are comments in Java?"
             msq (
-                choice(code("// Comment") explanation("This is a single line comment in Java"))
-                choice(code("/* Comment */") explanation ("This is a multi-line comment in Java"))
-                choice(code("/** Comment **/") explanation(
+                correct-choice("`// Comment`" explanation("This is a single line comment in Java"))
+                correct-choice("`/* Comment */`" explanation ("This is a multi-line comment in Java"))
+                correct-choice("`/** Comment **/`" explanation(
                     "This also works as a multi line comment in Java. "
                     "The extra `*` in the comment don't affect anything."
                 ))
-                choice(code("# Comment") explanation("This is a comment in Python or R etc, not Java"))
-                choice(code("% Comment") explanation("This is a comment in Matlab or LaTeX etc, not Java"))
-                choice(code("<!-- Comment -->") explanation("This is a comment in HTML, not Java"))
+                choice("`# Comment`" explanation("This is a comment in Python or R etc, not Java"))
+                choice("`% Comment`" explanation("This is a comment in Matlab or LaTeX etc, not Java"))
+                choice("`<!-- Comment -->`" explanation("This is a comment in HTML, not Java"))
             )
         )
 
@@ -57,7 +58,7 @@ quiz (
                 "    }
                 "}
             )
-            "Write a class DoubleMotor that encapsulates two `Motor`s. The class should have a single "
+            "Write a class `DoubleMotor` that encapsulates two `Motor`s. The class should have a single "
             "constructor taking the IDs of the two motors and a single method to simultaneously "
             "set the speeds of both motors."
             frq(

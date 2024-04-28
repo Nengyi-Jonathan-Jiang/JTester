@@ -8,6 +8,21 @@
     src:         url("../font/JetBrainsMono.ttf");
 }
 
+.questions :is(h2, h3) {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.questions h2 {
+    font-size: 20pt;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.questions h3 {
+    font-size: 16pt;
+}
+
 .questions [contenteditable]{
     outline: none;
 }
@@ -26,12 +41,17 @@
 .questions pre {
     display: inline-block;
     margin: 0;
+    tab-size: 4;
 }
 
 .questions :is(pre, pre *) {
     font-family: "JetBrains Mono", monospace;
     font-size:   10pt;
     white-space: pre-wrap;
+}
+
+.questions pre.code-block::-webkit-scrollbar {
+    display: none;
 }
 
 .questions pre.code-block {
@@ -41,6 +61,8 @@
     margin-bottom: 5px;
     padding: 5px 5px 5px 32px;
     position: relative;
+    overflow-x: auto;
+    white-space: pre !important;
 }
 
 .questions pre.code-block::before {

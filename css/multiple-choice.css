@@ -3,6 +3,69 @@
 }
 
 .questions :is(.answer-select, .answer-choices) > label > input {
-    vertical-align: -.12em;
+}
+
+label.answer-choice>input {
+    display: none;
+}
+
+div.answer-choices .answer-choice::before {
+    border-radius: 50%;
+}
+
+div.answer-choices label.answer-choice::before {
+    content: "";
     margin-right: .5em;
+    margin-left: .15em;
+    display: inline-block;
+    width: .55em;
+    height: .55em;
+    vertical-align: .05em;
+    outline: 1px solid #48f;
+    outline-offset: .15em;
+}
+
+div.answer-choices label.answer-choice:has(>input:checked)::before {
+    background: #48f;
+}
+
+div.answer-select label.answer-choice::before {
+    border-radius: 25%;
+    content: "✔";
+    margin-right: .625em;
+    display: inline-flex;
+    width: 1em;
+    height: 1em;
+    font-size: 80%;
+    vertical-align: .05em;
+    border: 1px solid #48f;
+    justify-content: center;
+    align-items: center;
+    color: transparent;
+}
+
+div.answer-select label.answer-choice:has(>input:checked)::before {
+    background: #48f;
+    color: white;
+}
+
+.questions .question:has(.check-button:checked) label.answer-choice.correct:has(input:not(.checked))::before {
+    outline-color: #fb4;
+    border-color: #fb4;
+    background-color: #fb4;
+}
+
+.questions .question:has(.check-button:checked) label.answer-choice.correct:has(input:checked)::before {
+    outline-color: #0d7;
+    border-color: #0d7;
+    background-color: #0d7;
+}
+
+.questions .question:has(.check-button:checked) label.answer-choice:not(.correct)::before {
+    outline-color: #f04;
+    border-color: #f04;
+}
+
+.questions .question:has(.check-button:checked) label.answer-choice:not(.correct):has(input:checked)::before {
+    background-color: #f04;
 }

@@ -1,5 +1,5 @@
 string := "([^"\n\\]|\\[^\n])*"?
-type := quiz|questions?|code|block|(inline-)?frq|m[cs]q|(correct-)?choice|explanation|section|title|heading
+type := quiz|questions?|block|(inline-)?frq|m[cs]q|(correct-)?choice|explanation|section|title|heading
 (
 )
 =

@@ -49,6 +49,12 @@ const objs = {
             el.appendChild(b);
         }
     },
+    'title': {
+        type: 'h2'
+    },
+    'heading': {
+        type: 'h3'
+    },
     'section': {
         type: 'div'
     },
@@ -111,6 +117,23 @@ const objs = {
             }
 
             el.onkeydown = (evt) => {
+                if(evt.key === 'Tab') {
+                    const range = window.getSelection().getRangeAt(0);
+                    range.deleteContents();
+
+                    if(!range.startContainer) {
+                        console.log('no more start container');
+                    }
+
+                    const p = range.startOffset;
+                    const t = range.startContainer.textContent;
+                    range.startContainer.textContent = t.substring(0, p) + '\t' + t.substring(p);
+                    range.setStart(range.startContainer, p + 1);
+                    range.collapse(true);
+
+                    evt.preventDefault();
+                    evt.stopImmediatePropagation();
+                }
                 if(evt.key === 'Enter') {
                     const range = window.getSelection().getRangeAt(0);
                     range.deleteContents();
@@ -188,7 +211,53 @@ const objs = {
 };
 
 function parseString(str) {
-    return [new Text(str)];
+    const res = [];
+    let curr = '';
+    let isCode = false;
+    let isEscape = false;
+
+    for(let char of str) {
+        if(isEscape) {
+            curr += char;
+            isEscape = false;
+            continue;
+        }
+        if(char === '\\') {
+            isEscape = true;
+            continue;
+        }
+        if(char === '`') {
+            if(isCode) {
+                const p = document.createElement('pre');
+                p.className = 'code';
+                p.appendChild(new Text(curr));
+                res.push(p);
+                curr = '';
+                isCode = false;
+            }
+            else {
+                res.push(new Text(curr));
+                curr = '';
+                isCode = true;
+            }
+            continue;
+        }
+        curr += char;
+    }
+
+    if(curr) {
+        if (isCode) {
+            const p = document.createElement('pre');
+            p.className = 'code';
+            p.appendChild(new Text(curr));
+            res.push(p);
+        } else {
+            res.push(new Text(curr));
+        }
+    }
+
+    // return [new Text(str)];
+    return res;
 }
 
 /**
