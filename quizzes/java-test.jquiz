@@ -155,10 +155,10 @@ question (
 
 question (
     "Refer back to the class in question 7. Fill in the blanks to write a new class `MotorStateWithPosition` "
-    "that extends MotorState. The `compareTo` method should be overridden. If the speeds are unequal, the "
-    "method should return the result of comparing the speeds. Otherwise, if the other object is a "
-    "`MotorStateWithPosition`, the method should return the result of comparing the positions. Otherwise, "
-    "the method should return 1."
+    "that extends MotorState. The `compareTo` method should be overridden. The method should first try using "
+    "the superclass's compareTo method. If the superclass's compareTo method returns a nonzero value, return "
+    "that value. Otherwise, if the other object is a `MotorStateWithPosition`, the method should return the "
+    "result of comparing the positions. Otherwise, the method should return 1."
     block(
         "class MotorStateWithPosition " inline-frq("extends") " MotorState {
         "    private final double position;
@@ -213,7 +213,7 @@ question (
         "Comparable<MotorState> x1 = new MotorState(null, 0);
         "Comparable<MotorState> x2 = new MotorStateWithPosition(null, 0, 0);
     )
-    "Which of the following will not throw an error?"
+    "Which of the following expressions will not throw an error?"
     msq(
         choice("`x1.getSpeed()`")
         choice("`x1.getPosition()`")
