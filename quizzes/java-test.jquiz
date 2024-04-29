@@ -155,7 +155,8 @@ question (
 
 question (
     "Refer back to the class in question 7. Fill in the blanks to write a new class `MotorStateWithPosition` "
-    "that extends MotorState."
+    "that extends MotorState. You should override the compareTo method to consider the position when comparing "
+    "two `MotorStateWithPosition`."
     block(
         "class MotorStateWithPosition " inline-frq("extends") " MotorState {
         "    private final double position;
@@ -181,7 +182,7 @@ question (
         "            return Double.compareTo(( " inline-frq("(MotorStateWithPosition)") " other).position, position);
         "        }
         "
-        "        return 0;
+        "        return 1;
         "    }
         "}
     )
