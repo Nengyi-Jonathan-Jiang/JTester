@@ -105,8 +105,8 @@ question (
         "}
     )
     "Write a new class `DoubleMotor` that encapsulates two `Motor`s. The class should have a single "
-    "constructor taking the IDs of the two motors and a single method to simultaneously "
-    "set the speeds of both motors. Answers may vary."
+    "constructor taking the IDs of the two motors and a single method `setMotorSpeeds` to set the "
+    "speeds of both motors to the same value. Answers may vary."
     frq(
         "public class DoubleMotor {
         "    private final Motor motor1, motor2;
@@ -155,8 +155,10 @@ question (
 
 question (
     "Refer back to the class in question 7. Fill in the blanks to write a new class `MotorStateWithPosition` "
-    "that extends MotorState. You should override the compareTo method to consider the position when comparing "
-    "two `MotorStateWithPosition`."
+    "that extends MotorState. The `compareTo` method should be overridden. If the speeds are unequal, the "
+    "method should return the result of comparing the speeds. Otherwise, if the other object is a "
+    "`MotorStateWithPosition`, the method should return the result of comparing the positions. Otherwise, "
+    "the method should return 1."
     block(
         "class MotorStateWithPosition " inline-frq("extends") " MotorState {
         "    private final double position;
