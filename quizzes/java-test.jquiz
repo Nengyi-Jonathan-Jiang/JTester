@@ -45,7 +45,7 @@ question (
 )
 
 question (
-    "Fill in the blanks to declare a method taking a array of `Motor`s and a double `speed`. "
+    "Fill in the blanks to declare a method taking a array of `Motor` and a double `speed`. "
     "The method should call the `setSpeed` function on each `Motor` with a single parameter `speed`, "
     "then return the array of `Motor`s"
     block(
@@ -104,7 +104,7 @@ question (
         "    }
         "}
     )
-    "Write a class `DoubleMotor` that encapsulates two `Motor`s. The class should have a single "
+    "Write a new class `DoubleMotor` that encapsulates two `Motor`s. The class should have a single "
     "constructor taking the IDs of the two motors and a single method to simultaneously "
     "set the speeds of both motors. Answers may vary."
     frq(
