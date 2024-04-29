@@ -163,3 +163,8 @@
 .questions > div > .bottom > label:has(>input:checked)::before {
     content: "Hide Answer";
 }
+
+
+.explanation {
+    color: #888;
+}

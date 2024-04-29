@@ -321,14 +321,14 @@ function printTable(t) {
             for (const to of transitions.get(NFA.EPSILON)) {
                 res += (
                     to === NFA.INITIAL_STATE ? "i" :
-                        to === NFA.FINAL_STATE ? "a" :
+                        to === NFA.FINAL_STATE ? "aMIMETypes.put(" :
                             to
                 ) + ", ";
             }
             if (res.endsWith(', ')) res = res.substring(0, res.length - 2);
         }
 
-        res += "\n";
+        res += ");\n";
     }
     res += '\n';
 

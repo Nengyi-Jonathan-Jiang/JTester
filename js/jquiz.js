@@ -295,6 +295,14 @@ function generateQuizFromAST(el, ast) {
                 obj.create?.(el);
             }
         } break;
+
+        case 'items': {
+            ast.children.forEach(generateQuizFromAST.bind(null, el));
+            break;
+        }
+
+        default:
+            console.log(ast);
     }
 }
 

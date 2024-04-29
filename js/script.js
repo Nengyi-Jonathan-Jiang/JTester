@@ -9,4 +9,5 @@ try {
 }
 catch (e) {
     alert(`Invalid quiz: "${quiz}" not found or broken.`)
+    console.error(e);
 }

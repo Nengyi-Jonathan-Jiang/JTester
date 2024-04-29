@@ -1,5 +1,4 @@
-
-program := item
+program := items
 
 item := object
 item := string
@@ -7,10 +6,4 @@ item := string
 items __EPSILON__
 __CHAIN__ items := items item
 
-object := type ( object-params )
-
-object-params __EPSILON__
-__CHAIN__ object-params := object-params object-param
-
-object-param := item
-object-param := name = item
+object := type ( items )
