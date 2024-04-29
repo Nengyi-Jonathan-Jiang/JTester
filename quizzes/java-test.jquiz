@@ -174,13 +174,13 @@ question (
         "
         "    @Override
         "    public int compareTo( " inline-frq("MotorState") " other ){
-        "        int defaultComparison = " inline-frq("super.compareTo") " (this, other);
+        "        int defaultComparison = " inline-frq("super.compareTo") " (other);
         "
         "        if (defaultComparison != 0) {
         "            return defaultComparison;
         "        }
         "
-        "        if (other " inline-frq("instanceof MotorStateWithPosition") " ){
+        "        if (other " inline-frq("instanceof") " MotorStateWithPosition){
         "            return Double.compareTo(( " inline-frq("(MotorStateWithPosition)") " other).position, position);
         "        }
         "
@@ -222,7 +222,7 @@ question (
         correct-choice("`((MotorState) x1).getSpeed()`")
         choice("`((MotorState) x1).getPosition()`")
         correct-choice("`((MotorState) x2).getSpeed()`")
-        correct-choice("`((MotorState) x2).getPosition()`")
+        choice("`((MotorState) x2).getPosition()`")
         choice("`((MotorStateWithPosition) x1).getSpeed()`")
         choice("`((MotorStateWithPosition) x1).getPosition()`")
         correct-choice("`((MotorStateWithPosition) x2).getSpeed()`")
