@@ -5,11 +5,11 @@ import {AbstractSyntaxTree} from "../quiz-parser/language/common/AbstractSyntaxT
 import {Token} from "../quiz-parser/language/common/Token.mjs";
 
 const lexer = createLexerFromFile(
-    await fetchTextContents('../quiz-parser/syntax/jquiz.lex'),
+    await fetchTextContents('quiz-parser/syntax/jquiz.lex'),
     'whitespace', 'comment'
 );
 const parser = new LRParser(ParsingTable.fromString(
-    await fetchTextContents('../quiz-parser/syntax/jquiz.ptbl')
+    await fetchTextContents('quiz-parser/syntax/jquiz.ptbl')
 ));
 
 const counter = new class Counter {
