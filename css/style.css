@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: #48f;
+    background: linear-gradient(to right, #36b, #48f, #36b);
 }
 
 header {
@@ -16,6 +16,6 @@ header>h1 {
 }
 
 #questions {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 10px auto;
 }

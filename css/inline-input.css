@@ -1,30 +1,25 @@
 .questions span.inline-frq {
-    border: 1px solid #48f;
-    padding: 0 .3em;
     position: relative;
     color: #48f;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .questions span.inline-input {
     display: inline-block;
 }
-.questions span.inline-input:not(:empty)::before,
-.questions span.inline-input:not(:empty)::after {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: 10;
-    background-color: white;
-    height: 2px;
-    left: 0;
-    right: 0;
-}
-.questions span.inline-input:not(:empty)::before { top: 0 }
-.questions span.inline-input:not(:empty)::after { bottom: 0 }
 
 .questions span.inline-input:empty {
-    width: 0;
     caret-color: transparent;
+}
+
+.questions span.inline-input:empty::before {
+    content: " ";
+}
+
+.questions span.inline-frq:has(span.inline-input:empty) {
+    outline: 1px solid #48f;
+    outline-offset: -1px;
 }
 
 .questions span.inline-frq:has(span.inline-input:empty:focus) {
@@ -59,7 +54,8 @@
 }
 
 .questions .question:has(.check-button:checked) span.inline-frq {
-    border-color: #fb4;
+    outline: 1px solid #fb4;
+    outline-offset: -1px;
 }
 
 .questions .question:has(.check-button:checked) span.inline-frq>span.correct {

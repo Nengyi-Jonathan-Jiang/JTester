@@ -1,3 +1,7 @@
+.questions :is(.answer-select, .answer-choices) {
+    margin-top: 5px;
+}
+
 .questions :is(.answer-select, .answer-choices) > label {
     display: block;
 }

@@ -6,16 +6,7 @@ quiz (
             "training. You may search things up if you absolutely need to, but try to do it without to much "
             "reliance on the internet. "
         )
-        question (
-            "Fill in the blanks to declare an integer variable `teamNumber` and initialize it to `4639`"
-            block (
-                inline-frq("int")
-                " teamNumber "
-                inline-frq("=")
-                " 4639 "
-                inline-frq(";")
-            )
-        )
+
         question (
             "Which of the following are comments in Java?"
             msq (
@@ -32,20 +23,79 @@ quiz (
         )
 
         question (
-            "What do you think the following function does?"
-            block(
-                "public boolean mysteryFunction(){
-                "    double elapsedTime = getCurrentTime() - this.startTime;
-                "    return elapsedTime >= this.cooldownDuration;
-                "}
-            )
-            mcq (
-                choice ("Gets the elapsed time since `startTime`")
-                correct-choice ("Checks if a cooldown is finished")
-                choice ("I have no idea!")
-                choice ("Checks if the current time is not less than the cooldown duration")
+            "Fill in the blanks to declare an integer variable `teamNumber` and initialize it to `4639`"
+            block (
+                inline-frq("int")
+                " teamNumber "
+                inline-frq("=")
+                " 4639 "
+                inline-frq(";")
             )
         )
+
+        question (
+            "Fill in the blanks to declare a method `printTeamNumber` taking a single integer argument "
+            "`teamNumber`. The method should print the string \"The team number is: \" followed by the "
+            "given team number to the console."
+            block(
+                "public static " inline-frq("void") " printTeamNumber( " inline-frq("int") " teamNumber "
+                    inline-frq("){") "
+
+                "    System.out.println " inline-frq("(") " \"The team number is: \" "
+                        inline-frq("+") " teamNumber " inline-frq(");") "
+
+                inline-frq("}")
+            )
+        )
+
+        question (
+            "Fill in the blanks to declare a method taking a array of `Motor`s and a double `speed`. "
+            "The method should call the `setSpeed` function on each `Motor` with a single parameter `speed`, "
+            "then return the array of `Motor`s"
+            block(
+                "public static " inline-frq("Motor[]") " setAllMotorSpeeds( " inline-frq("Motor[]") " motors, "
+                    inline-frq("double") " speed ){
+
+                "    for ( " inline-frq("Motor") " motor " inline-frq(":") " motors){
+                "        motor " inline-frq(".") " setSpeed " inline-frq("(") " speed " inline-frq(");") "
+                "    }
+                "    " inline-frq("return") " motors " inline-frq(";") "
+                "}
+            )
+        )
+
+        question (
+            "Fill in the blanks to declare a class `MotorState`. The class should have an instance variable "
+            "`double speed` and an instance variable `Motor motor`. The class should provide getters for both "
+            "instance variables and have a single constructor that sets the values of both instance variables."
+            block(
+                "public " inline-frq("class") " MotorState {
+                "    private final " inline-frq("double") " speed;
+                "    private final " inline-frq("Motor") " motor;
+                "
+                "    public " inline-frq("MotorState") " (Motor motor, double speed) {
+                "        " inline-frq("this.motor") " = motor;
+                "        " inline-frq("this.speed") " = speed;
+                "    }
+                "
+                "    public " inline-frq("Motor") " getMotor(){
+                "        return motor;
+                "    }
+                "
+                "    public " inline-frq("double") " getSpeed(){
+                "        return speed;
+                "    }
+                "}"
+            )
+        )
+
+        section(
+            heading("OOP Basics")
+            "This section is meant to test your understanding of object-oriented programming (OOP). This is very "
+            "important in FRC programming because it helps us organize our code (and because the library we use "
+            "basically more-or-less mandates it)."
+        )
+
         question (
             "Consider the following class:
             block(
@@ -60,12 +110,12 @@ quiz (
             )
             "Write a class `DoubleMotor` that encapsulates two `Motor`s. The class should have a single "
             "constructor taking the IDs of the two motors and a single method to simultaneously "
-            "set the speeds of both motors."
+            "set the speeds of both motors. Answers may vary."
             frq(
                 "public class DoubleMotor {
                 "    private final Motor motor1, motor2;
                 "
-                "    public DoubleMotor(int motorId1, motorId2){
+                "    public DoubleMotor(int motorId1, int motorId2){
                 "        motor1 = new Motor(motorId1);
                 "        motor2 = new Motor(motorId2);
                 "    }
@@ -76,6 +126,116 @@ quiz (
                 "    }
                 "}
             )
+        )
+
+        question (
+            "Refer back to the class you wrote in question 5. Fill in the blanks to make it implement the "
+            "`Comparable<MotorState>` interface, which has the method `int compareTo(MotorState)`."
+            block (
+                "public class MotorState " inline-frq("implements") " Comparable<MotorState> {
+                "    private final double speed;
+                "    private final Motor motor;
+                "
+                "    public MotorState (Motor motor, double speed) {
+                "        this.motor = motor;
+                "        this.speed = speed;
+                "    }
+                "
+                "    public Motor getMotor(){
+                "        return motor;
+                "    }
+                "
+                "    public double getSpeed(){
+                "        return speed;
+                "    }
+                "
+                "    " inline-frq("@Override") "
+                "    public " inline-frq("int") " compareTo( " inline-frq("MotorState") " other ) {
+                "        return Double.compareTo(speed, other.speed);
+                "    }
+                "}
+            )
+        )
+
+        question (
+            "Refer back to the class in question 7. Fill in the blanks to write a new class `MotorStateWithPosition` "
+            "that extends MotorState."
+            block(
+                "class MotorStateWithPosition " inline-frq("extends") " MotorState {
+                "    private final double position;
+                "
+                "    public MotorStateWithPosition(Motor motor, double speed, double position) {
+                "        " inline-frq("super(motor, speed);") "
+                "        this.position = position;
+                "    }
+                "
+                "    public double getPosition(){
+                "        return position;
+                "    }
+                "
+                "    @Override
+                "    public int compareTo( " inline-frq("MotorState") " other ){
+                "        int defaultComparison = " inline-frq("super.compareTo") " (this, other);
+                "
+                "        if (defaultComparison != 0) {
+                "            return defaultComparison;
+                "        }
+                "
+                "        if (other " inline-frq("instanceof MotorStateWithPosition") " ){
+                "            return Double.compareTo(( " inline-frq("(MotorStateWithPosition)") " other).position, position);
+                "        }
+                "
+                "        return 0;
+                "    }
+                "}
+            )
+        )
+
+        question (
+            "Refer back to the classes in questions 7 and 8. Which of the following are valid?"
+            msq(
+                choice("`Comparable<MotorState> x = new Comparable<MotorState>();`")
+                correct-choice("`Comparable<MotorState> x = new MotorState(null, 0);`")
+                correct-choice("`Comparable<MotorState> x = new MotorStateWithPosition(null, 0, 0);`")
+
+                choice("`MotorState x = new Comparable<MotorState>();`")
+                correct-choice("`MotorState x = new MotorState(null, 0);`")
+                correct-choice("`MotorState x = new MotorStateWithPosition(null, 0, 0);`")
+
+                choice("`MotorStateWithPosition x = new Comparable<MotorState>();`")
+                choice("`MotorStateWithPosition x = new MotorState(null, 0);`")
+                correct-choice("`MotorStateWithPosition x = new MotorStateWithPosition(null, 0, 0);`")
+            )
+        )
+
+        question (
+            "Consider the following code using the classes from questions 7 and 8"
+            block (
+                "Comparable<MotorState> x1 = new MotorState(null, 0);
+                "Comparable<MotorState> x2 = new MotorStateWithPosition(null, 0, 0);
+            )
+            "Which of the following will not throw an error?"
+            msq(
+                choice("`x1.getSpeed()`")
+                choice("`x1.getPosition()`")
+                choice("`x2.getSpeed()`")
+                choice("`x2.getPosition()`")
+                correct-choice("`((MotorState) x1).getSpeed()`")
+                choice("`((MotorState) x1).getPosition()`")
+                correct-choice("`((MotorState) x2).getSpeed()`")
+                correct-choice("`((MotorState) x2).getPosition()`")
+                choice("`((MotorStateWithPosition) x1).getSpeed()`")
+                choice("`((MotorStateWithPosition) x1).getPosition()`")
+                correct-choice("`((MotorStateWithPosition) x2).getSpeed()`")
+                correct-choice("`((MotorStateWithPosition) x2).getPosition()`")
+            )
+        )
+
+        section(
+            "Disclaimer: Even though you might have been tricked into thinking that the code you wrote on the test is "
+            "a good sample of the code we will write in training, it's not. It's just made to look like that in order "
+            "to make the test a bit less boring. But hey, you're done! Be sure to click the \"Reveal Answer\" button "
+            "on each question to make sure you did ok."
         )
     )
 )
